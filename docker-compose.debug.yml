@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  task-api:
+    image: task-manager-api:0.0.0.2
+    ports:
+      - "3000:3000"
+    restart: always
+    networks:
+      - task-manager-network
+
+
+  task-manager:
+    image: task-manager-prod:ver1
+    ports:
+      - "5600:9000"
+    restart: always
+    depends_on:
+      - task-api
+    networks:
+      - task-manager-network
+ 
+# Networks to be created to facilitate communication between containers
+networks:
+task-manager-network:
