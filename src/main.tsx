@@ -9,7 +9,11 @@ import Task from './pages/Task.tsx'
 
 import { store } from './store';
 import { Provider } from 'react-redux';
+
+ 
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
+   
     <Provider store={store}>
         <BrowserRouter>
             <Routes>
@@ -22,4 +26,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             </Routes>
         </BrowserRouter>
     </Provider>
+   
 )

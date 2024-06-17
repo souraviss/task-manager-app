@@ -2,29 +2,28 @@ import { GetTaskRepository } from "@/repository/task"
 import { getAPI } from "@/utils/api"
 import { useEffect, useState } from "react"
 
-
-
+import {
+  useQuery,
+} from '@tanstack/react-query'
+import { GetTasks } from "@/query/task"
 
 const Message = () => {
-  const [data, setData] = useState([])
-
-  const getData = async () => {
-    // initializing the repository
-    const repository = new GetTaskRepository("tasks")
-    const { data, status } = await repository.GetAll();
-    //console.log("data", data);
-    //console.log("data", status);
-
-
-    if (status === 200) {
-      setData(data);
-
+  const { isPending, error, data: tasks, isFetching } = useQuery({
+    queryKey: ['repoData'],
+    queryFn: async () => {
+      const { data, status } = await GetTasks();
+      return { data, status }
     }
-  }
-  useEffect(() => {
-    getData();
-  }, []);
-  console.log("data",data);
+  })
+
+  if (isPending) return 'Loading...'
+
+  if (error) return 'An error has occurred: ' + error.message
+
+  // const {data,status} = await GetTasks();
+  // console.log("data", data);
+  // console.log("sttaus", status);
+
   return (
     <div className="h-screen">Message</div>
   )
