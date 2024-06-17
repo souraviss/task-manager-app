@@ -1,15 +1,15 @@
 import { publicDecrypt } from "crypto";
-import { entity, task } from "./type";
+import { entity, responseHandler, task } from "./type";
 
-export interface IWrite<T extends entity> {
-    Post(item: T): Promise<T>,
-    Patch(item: T): Promise<T>,
-    Delete(item: T): Promise<T>
+export interface IWrite<T extends entity,Q extends responseHandler> {
+    Post(item: T): Promise<Q>,
+    Patch(item: T): Promise<Q>,
+    Delete(item: T): Promise<Q>
 }
 
-export interface IRead<T extends entity> {
-    GetAll(): Promise<T[]>,
-    FindBySingle(item: T): Promise<T>
+export interface IRead<T extends entity,Q extends responseHandler> {
+    GetAll(): Promise<Q>,
+    FindBySingle(item: T): Promise<Q>
 }
 
 //marge the Iwrite and IRead together into baseRepository
@@ -33,31 +33,31 @@ export interface IRead<T extends entity> {
 
 // }
 
-export abstract class ReadingRepository<T extends entity> implements IRead<T> {
+export abstract class ReadingRepository<T extends entity,Q extends responseHandler> implements IRead<T,Q> {
     public readonly _url: string;
     constructor(url: string) {
         this._url = url;
     }
-    GetAll(): Promise<T[]> {
+    GetAll(): Promise<Q> {
         throw new Error("Method not implemented.");
     }
-    FindBySingle(item: T): Promise<T> {
+    FindBySingle(item: T): Promise<Q> {
         throw new Error("Method not implemented.");
     }
 }
 
-export abstract class PostingRepository<T extends entity> implements IWrite<T> {
+export abstract class PostingRepository<T extends entity,Q extends responseHandler> implements IWrite<T,Q> {
     public readonly _url: string;
     constructor(url: string) {
         this._url = url;
     }
-    Post(item: T): Promise<T> {
+    Post(item: T): Promise<Q> {
         throw new Error("Method not implemented.");
     }
-    Patch(item: T): Promise<T> {
+    Patch(item: T): Promise<Q> {
         throw new Error("Method not implemented.");
     }
-    Delete(item: T): Promise<T> {
+    Delete(item: T): Promise<Q> {
         throw new Error("Method not implemented.");
     }
 }
