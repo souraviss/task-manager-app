@@ -7,15 +7,19 @@ import Register from './pages/Register.tsx'
 import Message from './pages/Message.tsx'
 import Task from './pages/Task.tsx'
 
+import { store } from './store';
+import { Provider } from 'react-redux';
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <BrowserRouter>
-        <Routes>
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/' element={<App />}>
-                <Route path='/message' element={<Message />} />
-                <Route path="/task" element={<Task />} />
-            </Route>
-        </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+        <BrowserRouter>
+            <Routes>
+                <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
+                <Route path='/' element={<App />}>
+                    <Route path='/message' element={<Message />} />
+                    <Route path="/task" element={<Task />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    </Provider>
 )

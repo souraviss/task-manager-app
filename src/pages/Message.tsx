@@ -1,3 +1,4 @@
+import { GetTaskRepository } from "@/repository/task"
 import { getAPI } from "@/utils/api"
 import  { useEffect,useState } from "react"
 
@@ -8,14 +9,16 @@ const Message = () => {
   const [data, setData] = useState([])
 
   const getData = async () => {
-    const { data, status } = await getAPI("tasks");
+    // initializing the repository
+    const repository= new GetTaskRepository("tasks")
+    const data = await repository.GetAll();
     console.log("data",data);
-    console.log("status",status);
+  
 
-    if (status === 200) {
-      setData(data);
+    // if (status === 200) {
+    //   setData(data);
 
-    }
+    // }
   }
 useEffect(() => {
   getData();

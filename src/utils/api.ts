@@ -1,3 +1,4 @@
+import { entity } from '@/types/type'
 import axios from 'axios'
 
 interface Params {
@@ -37,10 +38,10 @@ export const getAPI = async (url: string, data?: any): Promise<any> =>{
         }
     })
 }
-export const postAPI = async (url: string, data: any): Promise<any> =>{
+export const postAPI = async (url: string, data?: any): Promise<any> =>{
     return await axios({
         ...postConfig,
-        url: `${postConfig.baseUrl}/${url}/${data}`,
+        url: `${postConfig.baseUrl}/${url}/${data?._id}`,
         data
     }).then ( (response) => {
         return {
