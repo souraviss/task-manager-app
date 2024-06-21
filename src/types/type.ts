@@ -10,3 +10,7 @@ export type entity = {
     _id?: any,
     __v?: number
 }
+export type datatype = {
+    data: any,
+    status: any
+}
