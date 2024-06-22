@@ -3,7 +3,7 @@ export interface task extends entity {
     completed?: boolean,
 }
 export interface responseHandler {
-    data: any,
+    data: any[],
     status: any
 }
 export type entity = {

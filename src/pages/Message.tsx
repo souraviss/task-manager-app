@@ -1,30 +1,37 @@
-import { GetTaskRepository } from "@/repository/task"
-import { getAPI } from "@/utils/api"
-import { useEffect, useState } from "react"
+
 
 import {
   useQuery,
 } from '@tanstack/react-query'
 import { GetTasks } from "@/query/task"
+import { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { GetAllTasks } from '@/actionReducer/taskReducer';
+import Task from '@/components/Task';
 
 const Message = () => {
-    const { isPending, error, data: tasks, isFetching } = useQuery({
-      queryKey: ['repoData'],
-      queryFn: async () => {
-        const { data, status } = await GetTasks();
-        return { data, status }
+  const dispatch = useDispatch();
+  
+  useQuery({
+    queryKey: ['repoData'],
+    queryFn: async () => {
+      const data = await GetTasks();
+      dispatch(GetAllTasks({...data}));
+      return null;
+    }
+  })
 
-      }
-    })
 
 
-  if (isPending) return 'Loading...'
+  // if (isPending) return 'Loading...'
 
-  if (error) return 'An error has occurred: ' + error.message
+  // if (error) return 'An error has occurred: ' + error.message
 
 
   return (
-    <div className="h-screen">Message</div>
+    <div className="h-screen">
+      <Task />
+    </div>
   )
 }
 

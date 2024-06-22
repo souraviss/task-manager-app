@@ -4,7 +4,9 @@ import Footer from "./components/local/Footer"
 import {
   QueryClient,
   QueryClientProvider,
+  useQuery,
 } from '@tanstack/react-query';
+
 
 const queryClient = new QueryClient();
 

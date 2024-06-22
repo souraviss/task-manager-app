@@ -1,5 +1,6 @@
 
 
+import { GetAllTasks } from '@/actionReducer/taskReducer';
 import { GetTaskRepository } from '@/repository/task';
 import { responseHandler } from '@/types/type';
 import {
@@ -7,7 +8,9 @@ import {
 } from '@tanstack/react-query'
 
 export const GetTasks = async () => {
+    //const dispatch = useDispatch();
     const repository = new GetTaskRepository("tasks")
     const { data, status } = await repository.GetAll();
-    return {data, status} as any;
+    //dispatch(GetAllTasks({data, status}));
+    return data as any[];
 }
