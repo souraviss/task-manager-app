@@ -5,7 +5,7 @@ import { getAPI, postAPI } from "@/utils/api";
 export interface taskReading extends IRead<task,responseHandler> {
 }
 
-export interface taskPosting extends IWrite<task,responseHandler> {
+export interface taskPosting extends IWrite<task> {
 }
 
 //Get the task that is currently executing this task from the base repository
@@ -20,14 +20,14 @@ export class GetTaskRepository extends ReadingRepository<task,responseHandler> i
 
 //Post the task that is currently executing this task from the base repository
 
-export class PostTaskRepository extends PostingRepository<task,responseHandler> implements taskPosting{
-    Post(item: task): Promise<responseHandler> {
-        return postAPI(this._url,item);
+export class PostTaskRepository extends PostingRepository<task> implements taskPosting{
+    Post(item: task,cb?:any): void {
+        postAPI(this._url,item,cb);
     }
-    Patch(item: task): Promise<responseHandler> {
-        return postAPI(this._url,item);
+    Patch(item: task,cb?:any): void {
+         postAPI(this._url,item,cb);
     }
-    Delete(item: task): Promise<responseHandler> {
-        return postAPI(this._url,item);
+    Delete(item: task,cb?:any): void{
+         postAPI(this._url,item,cb);
     }
 }

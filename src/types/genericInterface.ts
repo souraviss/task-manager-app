@@ -1,10 +1,10 @@
 import { publicDecrypt } from "crypto";
 import { entity, responseHandler, task } from "./type";
 
-export interface IWrite<T extends entity,Q extends responseHandler> {
-    Post(item: T): Promise<Q>,
-    Patch(item: T): Promise<Q>,
-    Delete(item: T): Promise<Q>
+export interface IWrite<T extends entity> {
+    Post(item: T,cb?:any):void,
+    Patch(item: T,cb?:any):void,
+    Delete(item: T,cb?:any):void
 }
 
 export interface IRead<T extends entity,Q extends responseHandler> {
@@ -12,26 +12,7 @@ export interface IRead<T extends entity,Q extends responseHandler> {
     FindBySingle(item: T): Promise<Q>
 }
 
-//marge the Iwrite and IRead together into baseRepository
-// that class only can be extended
-// abstract class BaseRepository<T extends entity> implements IWrite<T>, IRead<T> {
-//     GetAll(): Promise<T[]> {
-//         throw new Error("Method not implemented.");
-//     }
-//     FindBySingle(item: T): Promise<T> {
-//         throw new Error("Method not implemented.");
-//     }
-//     Post(item: T): Promise<T> {
-//         throw new Error("Method not implemented.");
-//     }
-//     Patch(item: T): Promise<T> {
-//         throw new Error("Method not implemented.");
-//     }
-//     Delete(item: T): Promise<T> {
-//         throw new Error("Method not implemented.");
-//     }
 
-// }
 
 export abstract class ReadingRepository<T extends entity,Q extends responseHandler> implements IRead<T,Q> {
     public readonly _url: string;
@@ -46,18 +27,18 @@ export abstract class ReadingRepository<T extends entity,Q extends responseHandl
     }
 }
 
-export abstract class PostingRepository<T extends entity,Q extends responseHandler> implements IWrite<T,Q> {
+export abstract class PostingRepository<T extends entity> implements IWrite<T> {
     public readonly _url: string;
     constructor(url: string) {
         this._url = url;
     }
-    Post(item: T): Promise<Q> {
+    Post(item: T,cb?:any): void {
         throw new Error("Method not implemented.");
     }
-    Patch(item: T): Promise<Q> {
+    Patch(item: T,cb?:any): void {
         throw new Error("Method not implemented.");
     }
-    Delete(item: T): Promise<Q> {
+    Delete(item: T,cb?:any): void {
         throw new Error("Method not implemented.");
     }
 }

@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+
 import Header from "./components/local/Header"
 import Footer from "./components/local/Footer"
 import {
@@ -6,6 +6,8 @@ import {
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query';
+import { BackgroundGradient } from "./components/ui/background-gradient";
+import { GridBackgroundDemo } from "./components/DotbackGround";
 
 
 const queryClient = new QueryClient();
@@ -14,13 +16,16 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="h-screen w-full">
-        <Header />
-        <div className="relative py-10 lg:py-16 xl:py-20">
-          <Outlet />
-        </div>
+      <>
+        {/* <BackgroundGradient> */}
+        {/* <Header /> */}
+
+        {/* <Outlet /> */}
+        <GridBackgroundDemo />
+
         <Footer />
-      </div>
+        {/* </BackgroundGradient> */}
+      </>
     </QueryClientProvider>
   )
 }

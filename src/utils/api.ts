@@ -38,16 +38,17 @@ export const getAPI = async (url: string, data?: any): Promise<any> =>{
         }
     })
 }
-export const postAPI = async (url: string, data?: any): Promise<any> =>{
+export const postAPI = async (url: string, data?: any,cb?:any) =>{
     return await axios({
         ...postConfig,
-        url: `${postConfig.baseUrl}/${url}/${data?._id}`,
+        url: `${postConfig.baseUrl}/${url}`,
         data
     }).then ( (response) => {
-        return {
+
+        cb({
             status: response.status,
             data: response.data
-        }
+        })
     }).catch((error) =>{
         console.log(error)
         return {
