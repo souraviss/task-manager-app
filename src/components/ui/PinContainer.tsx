@@ -7,12 +7,14 @@ export const PinContainer = ({
     children,
     title,
     href,
+    state,
     className,
     containerClassName,
   }: {
     children: React.ReactNode;
     title?: string;
     href?: string;
+    state:string,
     className?: string;
     containerClassName?: string;
   }) => {
@@ -36,6 +38,7 @@ export const PinContainer = ({
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         href={href || "/"}
+        state={state}
       >
         <div
           style={{

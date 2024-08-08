@@ -10,8 +10,8 @@ import { BackgroundGradient } from "./components/ui/background-gradient";
 import { GridBackgroundDemo } from "./components/DotbackGround";
 
 
+import { useDialog } from "./utils/useDialog";
 const queryClient = new QueryClient();
-
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
 
         <Footer />
         {/* </BackgroundGradient> */}
+       
       </>
     </QueryClientProvider>
   )

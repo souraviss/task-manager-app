@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button';
 
 const Message = () => {
   const dispatch = useDispatch();
-
+ 
   useQuery({
     queryKey: ['repoData'],
     queryFn: async () => {
@@ -54,8 +54,8 @@ const Message = () => {
       {/* <div className='grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 py-10'> */}
       <div className='grid grid-cols-1 py-10 gap-4' >
         <Task />
-      
       </div>
+     
     </div>
   )
 }

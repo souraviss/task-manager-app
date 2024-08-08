@@ -1,9 +1,11 @@
-
-
+import { EditorComp } from "@/components/editor/EditorComp" 
 
 const Task = () => {
+
   return (
-    <div>Task</div>
+    <>
+    <EditorComp definition="New Editor" /> 
+    </>
   )
 }
 

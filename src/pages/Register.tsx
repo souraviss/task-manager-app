@@ -1,8 +1,14 @@
 
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Register = () => {
+  const notify = () => toast("Wow so easy!");
   return (
-    <div>Register</div>
+    <div>
+
+      <button onClick={notify}>Notify!</button>
+      <ToastContainer />
+    </div>
   )
 }
 
