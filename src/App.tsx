@@ -1,5 +1,6 @@
 
 import Header from "./components/local/Header"
+// import { Toaster } from "@/components/ui/toaster"
 import Footer from "./components/local/Footer"
 import {
   QueryClient,
@@ -16,7 +17,8 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <>
+      
+     
         {/* <BackgroundGradient> */}
         {/* <Header /> */}
 
@@ -25,8 +27,8 @@ function App() {
 
         <Footer />
         {/* </BackgroundGradient> */}
-       
-      </>
+        
+      
     </QueryClientProvider>
   )
 }
